@@ -79,5 +79,5 @@ Elixir &middot; Phoenix LiveView &middot; Rust &middot; SQLite &middot; Tailwind
 ---
 
 <p align="center">
-  <sub>Named after <em>Cyanea</em>, a genus of jellyfish. Jellyfish are the only known life forms capable of biological immortality. The search for eternal life is as old as humanity, and the ultimate goal of the life sciences as a discipline.</sub>
+  <sub>Named after <em>Cyanea</em>, a genus of jellyfish. Among jellyfish are the only known organisms capable of biological immortality. The quest for eternal life is as old as humanity itself, and the life sciences are its most promising modern pursuit.</sub>
 </p>
