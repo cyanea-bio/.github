@@ -1,40 +1,37 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/cyanea-bio/assets/main/mascot.png" alt="Cyanea" width="160" />
+  <img src="https://cyanea.bio/mascot.png" alt="Cyanea" width="160" />
 </p>
 
-<h3 align="center">GitHub for Life Sciences</h3>
+<h3 align="center">The Open Community for Life Science Research</h3>
 
 <p align="center">
-  Store datasets, protocols, experiments, and analyses.<br/>
-  Version control everything. Collaborate openly. Own your data.
+  Share datasets, protocols, and experiments. Version everything.<br/>
+  Collaborate openly. Built by scientists, for scientists.
 </p>
 
 <p align="center">
   <a href="https://cyanea.bio">Website</a> &middot;
+  <a href="https://app.cyanea.bio">App</a> &middot;
   <a href="https://docs.cyanea.bio">Docs</a> &middot;
-  <a href="https://github.com/cyanea-bio/cyanea">Platform</a> &middot;
-  <a href="https://github.com/cyanea-bio/labs">Labs</a>
+  <a href="https://cyanea.bio/blog">Blog</a> &middot;
+  <a href="https://app.cyanea.bio/status">Status</a>
 </p>
 
 ---
 
 ### What is Cyanea?
 
-Cyanea is an open-source, federated platform for life science R&D — what GitHub and Hugging Face did for code and ML, applied to **bioinformatics, protocols, and experimental artifacts**.
+Cyanea is an open-source, federated platform for life science R&D. Store, version, and share datasets, protocols, notebooks, and pipelines. Self-hostable, federation-ready, with a Rust-powered compute layer that runs natively and in the browser via WASM.
 
-- **Cyanea Platform** — An Elixir/Phoenix app for storing, versioning, and sharing scientific artifacts (datasets, protocols, notebooks, pipelines). Self-hostable, federation-ready.
-- **Cyanea Labs** — A Rust bioinformatics ecosystem: 13 crates covering sequence I/O, alignment, omics data structures, phylogenetics, GPU compute, WASM, and Python bindings.
+- **[Cyanea Platform](https://github.com/cyanea-bio/cyanea)** — Elixir/Phoenix web application with interactive notebooks (dual WASM + server execution), REST API, CLI tool, real-time collaboration, and a full billing system. SQLite or PostgreSQL.
+- **[Cyanea Labs](https://github.com/cyanea-bio/labs)** — 15 Rust crates covering sequences, alignment, omics, statistics, ML, chemistry, structural biology, phylogenetics, metagenomics, epigenomics, GPU compute, file I/O, WASM bindings, and Python bindings. 3,700+ tests.
 
-### Repositories
+### Open Source Repositories
 
 | Repo | Description |
 |------|-------------|
-| [`cyanea`](https://github.com/cyanea-bio/cyanea) | Elixir/Phoenix platform — the core application |
-| [`labs`](https://github.com/cyanea-bio/labs) | Rust bioinformatics libraries (Cargo workspace, 13 crates) |
-| [`docs`](https://github.com/cyanea-bio/docs) | Documentation site (Zola) |
-| [`www`](https://github.com/cyanea-bio/www) | Marketing website (Zola) |
-| [`design`](https://github.com/cyanea-bio/design) | Design token system — single source of truth for colors, typography, spacing |
-| [`assets`](https://github.com/cyanea-bio/assets) | Brand assets and media files |
+| [`cyanea`](https://github.com/cyanea-bio/cyanea) | Elixir/Phoenix platform with LiveView, Rust NIFs, and WASM compute |
+| [`labs`](https://github.com/cyanea-bio/labs) | Rust bioinformatics ecosystem (Cargo workspace, 15 crates, 3,700+ tests) |
 
 ### Architecture
 
@@ -42,21 +39,42 @@ Cyanea is an open-source, federated platform for life science R&D — what GitHu
 Browser ── WASM (cyanea-wasm) ──┐
                                 ▼
           Cyanea Platform (Elixir/Phoenix)
-          LiveView · Channels · REST API · Oban
+          LiveView · REST API · Oban · PubSub
                        │
                        ▼
               Rustler NIFs (cyanea_native)
                        │
                        ▼
               Cyanea Labs (Rust)
-   cyanea-seq · cyanea-align · cyanea-omics · ...
+   seq · align · omics · stats · ml · chem
+   struct · phylo · meta · epi · io · gpu
 ```
 
-Rust libraries are consumed **server-side** via NIFs for heavy compute (parsing, alignment, hashing) and **client-side** via WASM for interactive browser tools (sequence viewers, local file preview).
+Rust libraries are consumed **server-side** via NIFs for heavy compute (parsing, alignment, hashing) and **client-side** via WASM for interactive browser tools (sequence viewers, notebook execution, local file preview).
+
+### Labs Crates
+
+| Crate | Domain |
+|-------|--------|
+| `cyanea-core` | Shared primitives, hashing, compression |
+| `cyanea-seq` | Sequence I/O, manipulation, k-mers, indexing |
+| `cyanea-align` | Pairwise and multiple sequence alignment, GPU dispatch |
+| `cyanea-omics` | Expression matrices, variants, genomic intervals, single-cell |
+| `cyanea-stats` | Descriptive stats, hypothesis testing, PCA, distributions |
+| `cyanea-ml` | Clustering, dimensionality reduction, KNN, embeddings |
+| `cyanea-chem` | SMILES/SDF parsing, fingerprints, molecular properties |
+| `cyanea-struct` | PDB/mmCIF parsing, secondary structure, superposition |
+| `cyanea-phylo` | Newick/NEXUS I/O, tree building, ancestral reconstruction |
+| `cyanea-meta` | Metagenomics: taxonomy, diversity, functional annotation |
+| `cyanea-epi` | Epigenomics: peak calling, motifs, chromatin states |
+| `cyanea-io` | Unified file format parsers (CSV, VCF, BED, GFF, SAM) |
+| `cyanea-gpu` | GPU compute abstraction (CUDA/Metal) |
+| `cyanea-wasm` | Browser runtime and JavaScript bindings |
+| `cyanea-py` | Python bindings via PyO3 |
 
 ### Built with
 
-Elixir &middot; Phoenix LiveView &middot; Rust &middot; PostgreSQL &middot; Tailwind CSS &middot; WASM
+Elixir &middot; Phoenix LiveView &middot; Rust &middot; SQLite &middot; Tailwind CSS &middot; WASM &middot; S3
 
 ---
 
