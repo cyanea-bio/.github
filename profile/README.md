@@ -79,5 +79,5 @@ Elixir &middot; Phoenix LiveView &middot; Rust &middot; SQLite &middot; Tailwind
 ---
 
 <p align="center">
-  <sub>Named after <em>Cyanea</em>, the genus of lion's mane jellyfish — a distributed nervous system, like networked research data.</sub>
+  <sub>Named after <em>Cyanea</em>, a genus of jellyfish. Jellyfish are the only known life forms capable of biological immortality. The search for eternal life is as old as humanity, and the ultimate goal of the life sciences as a discipline.</sub>
 </p>
