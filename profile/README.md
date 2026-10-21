@@ -1,83 +1,70 @@
 <p align="center">
-  <img src="https://cyanea.bio/mascot.png" alt="Cyanea" width="160" />
-</p>
-
-<h3 align="center">The Open Community for Life Science Research</h3>
-
-<p align="center">
-  Share datasets, protocols, and experiments. Version everything.<br/>
-  Collaborate openly. Built by scientists, for scientists.
+  <a href="https://cyanea.bio">
+    <img src="https://raw.githubusercontent.com/cyanea-bio/.github/main/profile/banner.png" alt="Cyanea: the system of record for computational biology. Versioned, reproducible, provenance-tracked notebooks. Open source." width="100%">
+  </a>
 </p>
 
 <p align="center">
   <a href="https://cyanea.bio">Website</a> &middot;
-  <a href="https://app.cyanea.bio">App</a> &middot;
   <a href="https://docs.cyanea.bio">Docs</a> &middot;
+  <a href="https://cyanea.bio/learn">Learn</a> &middot;
   <a href="https://cyanea.bio/blog">Blog</a> &middot;
-  <a href="https://app.cyanea.bio/status">Status</a>
+  <a href="https://cyanea.bio/status">What's live</a> &middot;
+  <a href="https://app.cyanea.bio">Open the app</a>
 </p>
 
 ---
 
-### What is Cyanea?
+### The system of record for computational biology
 
-Cyanea is an open-source, federated platform for life science R&D. Store, version, and share datasets, protocols, notebooks, and pipelines. Self-hostable, federation-ready, with a Rust-powered compute layer that runs natively and in the browser via WASM.
+Cyanea keeps notebooks, datasets and protocols versioned, provenance-tracked and re-runnable. Open an analysis, press run, get the same answer; follow any number back through cells, code versions and datasets to the raw files it came from.
 
-- **[Cyanea Platform](https://github.com/cyanea-bio/cyanea)** — Elixir/Phoenix web application with interactive notebooks (dual WASM + server execution), REST API, CLI tool, real-time collaboration, and a full billing system. SQLite or PostgreSQL.
-- **[Cyanea Labs](https://github.com/cyanea-bio/labs)** — 15 Rust crates covering sequences, alignment, omics, statistics, ML, chemistry, structural biology, phylogenetics, metagenomics, epigenomics, GPU compute, file I/O, WASM bindings, and Python bindings. 3,700+ tests.
+- **Re-run.** Notebooks execute in the browser or on server compute with pinned inputs, so last year's result still reproduces.
+- **Trace.** Every output has a lineage you can follow.
+- **Review.** Cell-level diffs between versions, so a changed parameter is visible before it reaches a paper.
+- **Federate.** Self-host an instance next to sensitive data and share the method, not the files.
 
-### Open Source Repositories
+Cyanea is open source and in public alpha. [See what's live today.](https://cyanea.bio/status)
 
-| Repo | Description |
-|------|-------------|
-| [`cyanea`](https://github.com/cyanea-bio/cyanea) | Elixir/Phoenix platform with LiveView, Rust NIFs, and WASM compute |
-| [`labs`](https://github.com/cyanea-bio/labs) | Rust bioinformatics ecosystem (Cargo workspace, 15 crates, 3,700+ tests) |
+### Open-source repositories
 
-### Architecture
+| Repository | What it is |
+|---|---|
+| [`cyanea`](https://github.com/cyanea-bio/cyanea) | The platform: a Phoenix LiveView app with versioned notebooks, datasets and protocols, a REST API, real-time collaboration and Rust NIFs for heavy compute. Self-hostable, SQLite or PostgreSQL. |
+| [`labs`](https://github.com/cyanea-bio/labs) | Cyanea Labs: 18 Rust crates for sequences, alignment, omics, statistics, machine learning, chemistry, structures, phylogenetics, metagenomics, epigenomics, proteomics and networks. Native, WebAssembly (`@cyanea/bio`) and Python (`cyanea`). Apache 2.0. |
+
+### How it fits together
 
 ```
-Browser ── WASM (cyanea-wasm) ──┐
-                                ▼
-          Cyanea Platform (Elixir/Phoenix)
-          LiveView · REST API · Oban · PubSub
-                       │
-                       ▼
-              Rustler NIFs (cyanea_native)
-                       │
-                       ▼
-              Cyanea Labs (Rust)
-   seq · align · omics · stats · ml · chem
-   struct · phylo · meta · epi · io · gpu
+Browser ── WebAssembly (cyanea-wasm) ──┐
+                                       ▼
+            Cyanea platform (Elixir / Phoenix)
+         LiveView · REST API · Oban · PubSub · CLI
+                         │
+                         ▼
+               Rustler NIFs (cyanea_native)
+                         │
+                         ▼
+                  Cyanea Labs (Rust)
+   seq · align · io · omics · stats · ml · chem · struct
+   phylo · meta · epi · proteomics · network · gpu
 ```
 
-Rust libraries are consumed **server-side** via NIFs for heavy compute (parsing, alignment, hashing) and **client-side** via WASM for interactive browser tools (sequence viewers, notebook execution, local file preview).
+The same Rust libraries run on the server through NIFs (parsing, alignment, hashing) and in the browser through WebAssembly (notebook cells, sequence viewers, local file previews), so a result computed in either place matches the other.
 
-### Labs Crates
+### Learn biology by running it
 
-| Crate | Domain |
-|-------|--------|
-| `cyanea-core` | Shared primitives, hashing, compression |
-| `cyanea-seq` | Sequence I/O, manipulation, k-mers, indexing |
-| `cyanea-align` | Pairwise and multiple sequence alignment, GPU dispatch |
-| `cyanea-omics` | Expression matrices, variants, genomic intervals, single-cell |
-| `cyanea-stats` | Descriptive stats, hypothesis testing, PCA, distributions |
-| `cyanea-ml` | Clustering, dimensionality reduction, KNN, embeddings |
-| `cyanea-chem` | SMILES/SDF parsing, fingerprints, molecular properties |
-| `cyanea-struct` | PDB/mmCIF parsing, secondary structure, superposition |
-| `cyanea-phylo` | Newick/NEXUS I/O, tree building, ancestral reconstruction |
-| `cyanea-meta` | Metagenomics: taxonomy, diversity, functional annotation |
-| `cyanea-epi` | Epigenomics: peak calling, motifs, chromatin states |
-| `cyanea-io` | Unified file format parsers (CSV, VCF, BED, GFF, SAM) |
-| `cyanea-gpu` | GPU compute abstraction (CUDA/Metal) |
-| `cyanea-wasm` | Browser runtime and JavaScript bindings |
-| `cyanea-py` | Python bindings via PyO3 |
+[cyanea.bio/learn](https://cyanea.bio/learn) has lessons from the cell to the genome, each with code you can run and a simulation you can break: transcription, sequence alignment, k-mer spectra, phylogenetic trees, p-values and more. No install needed.
 
-### Built with
+### Get involved
 
-Elixir &middot; Phoenix LiveView &middot; Rust &middot; SQLite &middot; Tailwind CSS &middot; WASM &middot; S3
+- Found a bug? Open an issue on [`cyanea`](https://github.com/cyanea-bio/cyanea/issues) or [`labs`](https://github.com/cyanea-bio/labs/issues).
+- Writing about Cyanea? The [press kit](https://cyanea.bio/press) has the marks, colours and type.
+- Anything else: [cyanea.bio/contact](https://cyanea.bio/contact).
 
 ---
 
 <p align="center">
-  <sub>Named after <em>Cyanea</em>, a genus of jellyfish. Among jellyfish are the only known organisms capable of biological immortality. The quest for eternal life is as old as humanity itself, and the life sciences are its most promising modern pursuit.</sub>
+  <img src="https://raw.githubusercontent.com/cyanea-bio/.github/main/brand/mark-colour.svg" alt="" width="40"><br>
+  <sub>Named for <i>Cyanea capillata</i>, the lion's mane jellyfish: long reach, lots of threads.</sub>
 </p>
